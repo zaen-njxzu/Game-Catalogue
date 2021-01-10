@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Game Catalaogue
+//  Game Catalogue
 //
 //  Created by Zaenal Arsy on 10/01/21.
 //
