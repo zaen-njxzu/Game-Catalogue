@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var homePresenter: HomePresenter
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            HomeView(presenter: homePresenter)
+        }
     }
 }
 
