@@ -14,28 +14,14 @@ struct HomeView: View {
         ZStack {
             Color(UIColor.Ext.Blue)
             if presenter.loadingState {
-              VStack {
-                Text("Loading...")
-                    .bold()
-                    .foregroundColor(.white)
-                ActivityIndicator()
-              }
+                loadingIndicator
             } else {
                 ScrollView(.vertical, showsIndicators: false) {
-                    ForEach(
-                        self.presenter.games,
-                        id: \.id
-                    ) { game in
-                        ZStack {
-                            GameRow(game: game)
-//                            self.presenter.linkBuilder(for: game) {
-//                                GameRow(game: game)
-//                            }.buttonStyle(PlainButtonStyle())
-                        }.padding(8)
-                    }
+                    VStack {
+                        gameList
+                    }.padding(8)
                 }
             }
-
         }
         .onAppear() {
             if self.presenter.games.count == 0 {
@@ -60,7 +46,29 @@ struct HomeView: View {
         })
         .navigationViewStyle(StackNavigationViewStyle())
 
-        
     }
 }
 
+extension HomeView {
+    var loadingIndicator: some View {
+        VStack {
+          Text("Loading...")
+              .bold()
+              .foregroundColor(.white)
+          ActivityIndicator()
+        }
+    }
+    
+    var gameList: some View {
+        ForEach(
+            self.presenter.games,
+            id: \.id
+        ) { game in
+            ZStack {
+                self.presenter.linkBuilder(for: game.id) {
+                    GameRow(game: game)
+                }.buttonStyle(PlainButtonStyle())
+            }.padding(8)
+        }
+    }
+}

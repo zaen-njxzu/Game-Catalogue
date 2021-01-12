@@ -42,10 +42,10 @@ struct ProfileView: View {
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.white)
-                    .imageScale(.large)
-            })
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.white)
+                        .imageScale(.large)
+                })
         )
         .background(NavigationConfigurator { nc in
             nc.navigationBar.barTintColor = UIColor.Ext.DarkBlue
@@ -54,11 +54,5 @@ struct ProfileView: View {
         .navigationBarBackButtonHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
 
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
     }
 }

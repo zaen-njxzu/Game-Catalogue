@@ -22,7 +22,7 @@ struct GameRow: View {
         .cornerRadius(20)
         .background(Color.white
                         .cornerRadius(20)
-                        .shadow(color: Color(UIColor.Ext.DarkBlue), radius: 6, x: 4.0, y: 4.0)
+                        .shadow(color: Color(UIColor.Ext.DarkBlue), radius: 6, x: 6.0, y: 6.0)
         )
         
 

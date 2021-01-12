@@ -26,13 +26,9 @@ final class RemoteDataSource: NSObject {
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
     func getDetailGame(with id: Int, result: @escaping (Result<DetailGameResponse, URLError>) -> Void) {
-        guard let url = URL(string: Endpoints.Gets.detailGame.url) else { return }
-
-        let parameters: Parameters = [
-             "id": id
-        ]
+        guard let url = URL(string: "\(Endpoints.Gets.detailGame.url)\(id)") else { return }
         
-        AF.request(url, method: .get, parameters: parameters)
+        AF.request(url, method: .get)
           .validate()
           .responseDecodable(of: DetailGameResponse.self) { response in
             switch response.result {

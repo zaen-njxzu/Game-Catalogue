@@ -19,6 +19,8 @@
 		00099C9325AB58E700843AF4 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00099C9225AB58E700843AF4 /* SDWebImageSwiftUI */; };
 		00099C9825AB671B00843AF4 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00099C9725AB671B00843AF4 /* RoundedCorners.swift */; };
 		00099C9D25AB6B7800843AF4 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00099C9C25AB6B7800843AF4 /* View+Ext.swift */; };
+		00AFAD1F25AD16D700C4330C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFAD1E25AD16D700C4330C /* DetailView.swift */; };
+		00AFAD2225AD16FF00C4330C /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFAD2125AD16FF00C4330C /* DetailPresenter.swift */; };
 		00E62A8F25ABEF1E00A285B7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E62A8E25ABEF1E00A285B7 /* UIColor+Ext.swift */; };
 		00E62A9325ABF38200A285B7 /* NavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E62A9225ABF38200A285B7 /* NavigationConfigurator.swift */; };
 		00E62B8F25AC9D1500A285B7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E62B8E25AC9D1500A285B7 /* ProfileView.swift */; };
@@ -52,6 +54,8 @@
 		00099C8A25AB584200843AF4 /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		00099C9725AB671B00843AF4 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		00099C9C25AB6B7800843AF4 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		00AFAD1E25AD16D700C4330C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		00AFAD2125AD16FF00C4330C /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		00E62A8E25ABEF1E00A285B7 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		00E62A9225ABF38200A285B7 /* NavigationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationConfigurator.swift; sourceTree = "<group>"; };
 		00E62B8E25AC9D1500A285B7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -220,6 +224,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		00AFAD1C25AD16AE00C4330C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00AFAD1E25AD16D700C4330C /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		00AFAD1D25AD16B900C4330C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				00AFAD2125AD16FF00C4330C /* DetailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		00E62B8C25AC9CFD00A285B7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +337,8 @@
 		00E62BC725ACC21300A285B7 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				00AFAD1D25AD16B900C4330C /* Presenter */,
+				00AFAD1C25AD16AE00C4330C /* View */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -401,11 +423,13 @@
 			files = (
 				00099C9D25AB6B7800843AF4 /* View+Ext.swift in Sources */,
 				00099C6A25AB560200843AF4 /* AppDelegate.swift in Sources */,
+				00AFAD2225AD16FF00C4330C /* DetailPresenter.swift in Sources */,
 				00E62BC225ACC19100A285B7 /* HomePresenter.swift in Sources */,
 				00E62BA425ACB7A000A285B7 /* APICall.swift in Sources */,
 				00E62BB725ACBF8F00A285B7 /* HomeInteractor.swift in Sources */,
 				00E62B9625ACB06100A285B7 /* RemoteDataSource.swift in Sources */,
 				00E62B8F25AC9D1500A285B7 /* ProfileView.swift in Sources */,
+				00AFAD1F25AD16D700C4330C /* DetailView.swift in Sources */,
 				00099C8725AB581B00843AF4 /* HomeView.swift in Sources */,
 				00099C8B25AB584200843AF4 /* GameRow.swift in Sources */,
 				00099C6C25AB560200843AF4 /* SceneDelegate.swift in Sources */,

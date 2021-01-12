@@ -16,14 +16,11 @@ protocol DetailUseCase {
 class DetailInteractor: DetailUseCase {
 
     private let repository: GameRepositoryProtocol
-    private let game: GameModel
 
     required init(
-        repository: GameRepositoryProtocol,
-        game: GameModel
+        repository: GameRepositoryProtocol
     ) {
         self.repository = repository
-        self.game = game
     }
 
     func getDetailGame(
