@@ -9,24 +9,24 @@ import Foundation
 
 protocol HomeUseCase {
 
-    func getGameList(completion: @escaping (Result<[GameModel], Error>) -> Void)
+  func getGameList(completion: @escaping (Result<[GameModel], Error>) -> Void)
 
 }
 
 class HomeInteractor: HomeUseCase {
 
-    private let repository: GameRepositoryProtocol
+  private let repository: GameRepositoryProtocol
 
-    required init(repository: GameRepositoryProtocol) {
-        self.repository = repository
-    }
+  required init(repository: GameRepositoryProtocol) {
+    self.repository = repository
+  }
 
-    func getGameList(
-        completion: @escaping (Result<[GameModel], Error>) -> Void
-    ) {
-        repository.getGameList { result in
-          completion(result)
-        }
+  func getGameList(
+    completion: @escaping (Result<[GameModel], Error>) -> Void
+  ) {
+    repository.getGameList { result in
+      completion(result)
     }
+  }
 
 }

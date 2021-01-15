@@ -20,11 +20,9 @@ protocol Endpoint {
 }
 
 enum Endpoints {
-  
   enum Gets: Endpoint {
     case gameList
     case detailGame
-    
     public var url: String {
       switch self {
       case .gameList: return "\(API.baseUrl)games"
@@ -32,5 +30,4 @@ enum Endpoints {
       }
     }
   }
-  
 }

@@ -19,6 +19,7 @@
 		00099C9325AB58E700843AF4 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00099C9225AB58E700843AF4 /* SDWebImageSwiftUI */; };
 		00099C9825AB671B00843AF4 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00099C9725AB671B00843AF4 /* RoundedCorners.swift */; };
 		00099C9D25AB6B7800843AF4 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00099C9C25AB6B7800843AF4 /* View+Ext.swift */; };
+		009092D425B1CA0A00508A60 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 009092D325B1CA0A00508A60 /* .swiftlint.yml */; };
 		00AFAD1F25AD16D700C4330C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFAD1E25AD16D700C4330C /* DetailView.swift */; };
 		00AFAD2225AD16FF00C4330C /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFAD2125AD16FF00C4330C /* DetailPresenter.swift */; };
 		00E62A8F25ABEF1E00A285B7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E62A8E25ABEF1E00A285B7 /* UIColor+Ext.swift */; };
@@ -54,6 +55,7 @@
 		00099C8A25AB584200843AF4 /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		00099C9725AB671B00843AF4 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		00099C9C25AB6B7800843AF4 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		009092D325B1CA0A00508A60 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		00AFAD1E25AD16D700C4330C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		00AFAD2125AD16FF00C4330C /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		00E62A8E25ABEF1E00A285B7 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		00099C5D25AB560200843AF4 = {
 			isa = PBXGroup;
 			children = (
+				009092D325B1CA0A00508A60 /* .swiftlint.yml */,
 				00099C6825AB560200843AF4 /* Game Catalogue */,
 				00099C6725AB560200843AF4 /* Products */,
 			);
@@ -353,6 +356,7 @@
 				00099C6225AB560200843AF4 /* Sources */,
 				00099C6325AB560200843AF4 /* Frameworks */,
 				00099C6425AB560200843AF4 /* Resources */,
+				009092D125B1C75F00508A60 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -408,6 +412,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				009092D425B1CA0A00508A60 /* .swiftlint.yml in Resources */,
 				00099C7625AB560500843AF4 /* LaunchScreen.storyboard in Resources */,
 				00099C7325AB560500843AF4 /* Preview Assets.xcassets in Resources */,
 				00099C7025AB560500843AF4 /* Assets.xcassets in Resources */,
@@ -415,6 +420,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		009092D125B1C75F00508A60 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then \n    swiftlint \nelse \n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\" \nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		00099C6225AB560200843AF4 /* Sources */ = {
