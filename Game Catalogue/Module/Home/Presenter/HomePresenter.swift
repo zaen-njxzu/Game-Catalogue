@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Combine
 
 class HomePresenter: ObservableObject {
-
+  private var cancellables: Set<AnyCancellable> = []
   private let router = HomeRouter()
   private let homeUseCase: HomeUseCase
 
@@ -19,22 +20,23 @@ class HomePresenter: ObservableObject {
   init(homeUseCase: HomeUseCase) {
     self.homeUseCase = homeUseCase
   }
-  func getGameList() {
+  func getGames() {
     loadingState = true
-    homeUseCase.getGameList { result in
-      switch result {
-      case .success(let games):
-        DispatchQueue.main.async {
-          self.loadingState = false
-          self.games = games
-        }
-      case .failure(let error):
-        DispatchQueue.main.async {
-          self.loadingState = false
+    homeUseCase.getGames()
+      .receive(on: RunLoop.main)
+      .sink { completion in
+        switch completion {
+        case .failure(let error):
           self.errorMessage = error.localizedDescription
+          self.loadingState = false
+        case .finished:
+          self.loadingState = false
         }
+      } receiveValue: { games in
+        print(games)
+        self.games = games
       }
-    }
+      .store(in: &cancellables)
   }
   func linkBuilder<Content: View>(
     for game: GameModel,

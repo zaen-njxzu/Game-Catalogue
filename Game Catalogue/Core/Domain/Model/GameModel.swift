@@ -13,4 +13,5 @@ struct GameModel: Equatable, Identifiable {
   let releasedAt: String
   let imageUrl: String
   let rating: String
+  let favourite: Bool
 }

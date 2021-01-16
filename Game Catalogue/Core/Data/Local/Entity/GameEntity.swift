@@ -14,6 +14,7 @@ class GameEntity: Object {
   @objc dynamic var released: String = ""
   @objc dynamic var backgroundImage: String = ""
   @objc dynamic var rating: String = ""
+  @objc dynamic var favourite = false
   override class func primaryKey() -> String? {
     return "id"
   }

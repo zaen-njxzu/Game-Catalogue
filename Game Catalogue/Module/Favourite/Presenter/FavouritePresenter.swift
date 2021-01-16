@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Combine
 
 class FavouritePresenter: ObservableObject {
-
+  private var cancellables: Set<AnyCancellable> = []
   private let router = FavouriteRouter()
   private let favouriteUseCase: FavouriteUseCase
 
@@ -21,30 +22,33 @@ class FavouritePresenter: ObservableObject {
   }
   func getGames() {
     loadingState = true
-    favouriteUseCase.getGames { result in
-      switch result {
-      case .success(let games):
-        DispatchQueue.main.async {
-          self.loadingState = false
-          self.games = games
-        }
-      case .failure(let error):
-        DispatchQueue.main.async {
-          self.loadingState = false
+    favouriteUseCase.getFavouriteGames()
+      .subscribe(on: RunLoop.main)
+      .sink { completion in
+        switch completion {
+        case .failure(let error):
           self.errorMessage = error.localizedDescription
+          self.loadingState = false
+        case .finished:
+          self.loadingState = false
         }
+      } receiveValue: { games in
+        self.games = games
       }
-    }
   }
-  func deleteGame(game: GameModel, completion: @escaping (Bool, AlertOneMessage) -> Void) {
-    favouriteUseCase.deleteGame(with: game.id) { result in
-      switch result {
-      case .success:
+  func favouriteGame(game: GameModel, completion: @escaping (Bool, AlertOneMessage) -> Void) {
+    favouriteUseCase.updateFavoriteGame(by: game.id)
+      .subscribe(on: RunLoop.main)
+      .sink { _completion in
+        switch _completion {
+        case .failure(let error):
+          completion(false, AlertOneMessage(title: "Fail!", message: "Failed to delete \(game.name), because  \(error.localizedDescription)", buttonText: "OK"))
+        case .finished: break
+        }
+      } receiveValue: { game in
         completion(true, AlertOneMessage(title: "Success!", message: "You already delete \(game.name) on favourite games.", buttonText: "OK"))
-      case .failure(let error):
-        completion(false, AlertOneMessage(title: "Fail!", message: "Failed to delete \(game.name), because  \(error.localizedDescription)", buttonText: "OK"))
       }
-    }
+      .store(in: &cancellables)
   }
   func linkBuilder<Content: View>(
     for game: GameModel,

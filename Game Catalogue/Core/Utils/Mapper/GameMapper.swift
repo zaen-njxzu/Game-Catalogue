@@ -8,18 +8,18 @@
 import Foundation
 
 final class GameMapper {
-  static func mapGameResponseToDomain(
-    input resultResponses: [GameResponse]
-  ) -> [GameModel] {
-
-    return resultResponses.map { result in
-      return GameModel(
-        id: result.id,
-        name: result.name,
-        releasedAt: result.released,
-        imageUrl: result.backgroundImage,
-        rating: result.rating
-      )
+  static func mapGameResponsesToEntiies(
+    input games: [GameResponse]
+  ) -> [GameEntity] {
+    return games.map { result in
+      let newGame = GameEntity()
+      newGame.id = result.id
+      newGame.name = result.name
+      newGame.released = result.released
+      newGame.backgroundImage = result.backgroundImage
+      newGame.rating = result.rating
+      newGame.favourite = false
+      return newGame
     }
   }
   static func mapDetailGameResponseToDomain(
@@ -35,16 +35,17 @@ final class GameMapper {
       rating: detailGameResponse.rating
     )
   }
-  static func mapGameDomainToEntity(
-    input game: GameModel
-  ) -> GameEntity {
-    let newGame = GameEntity()
-    newGame.id = game.id
-    newGame.name = game.name
-    newGame.released = game.releasedAt
-    newGame.backgroundImage = game.imageUrl
-    newGame.rating = game.rating
-    return newGame
+  static func mapGameEntityToDomain(
+    input game: GameEntity
+  ) -> GameModel {
+    GameModel(
+      id: game.id,
+      name: game.name,
+      releasedAt: game.released,
+      imageUrl: game.backgroundImage,
+      rating: game.rating,
+      favourite: game.favourite
+    )
   }
   static func mapGameEntitiesToDomains(
     input gameEntities: [GameEntity]
@@ -55,7 +56,8 @@ final class GameMapper {
         name: result.name,
         releasedAt: result.released,
         imageUrl: result.backgroundImage,
-        rating: result.rating
+        rating: result.rating,
+        favourite: result.favourite
       )
     }
   }

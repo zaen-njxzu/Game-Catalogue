@@ -6,14 +6,12 @@
 //
 
 import Foundation
+import Combine
 
 protocol DetailUseCase {
 
-  func getDetailGame(with id: Int, completion: @escaping (Result<DetailGameModel, Error>) -> Void)
-  func addGame(
-    from games: GameModel,
-    completion: ((Result<Bool, Error>) -> Void)?
-  )
+  func getDetailGame(with id: Int) -> AnyPublisher<DetailGameModel, Error>
+  func updateFavoriteGame(by gameId: Int) -> AnyPublisher<GameModel, Error>
 }
 
 class DetailInteractor: DetailUseCase {
@@ -26,18 +24,11 @@ class DetailInteractor: DetailUseCase {
     self.repository = repository
   }
 
-  func getDetailGame(
-    with id: Int,
-    completion: @escaping (Result<DetailGameModel, Error>) -> Void
-  ) {
-    repository.getDetailGame(with: id) { result in
-      completion(result)
-    }
+  func getDetailGame(with id: Int) -> AnyPublisher<DetailGameModel, Error> {
+    repository.getDetailGame(with: id)
   }
-  func addGame(from game: GameModel, completion: ((Result<Bool, Error>) -> Void)? = nil) {
-    repository.addGame(from: game) { result in
-      completion?(result)
-    }
+  func updateFavoriteGame(by gameId: Int) -> AnyPublisher<GameModel, Error> {
+    repository.updateFavoriteGame(by: gameId)
   }
 
 }

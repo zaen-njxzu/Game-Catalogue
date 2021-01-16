@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Combine
 
 class DetailPresenter: ObservableObject {
-
+  private var cancellables: Set<AnyCancellable> = []
   private let detailUseCase: DetailUseCase
-  private let game: GameModel
+  var game: GameModel
 
   @Published var detailGame: DetailGameModel?
   @Published var errorMessage: String = ""
@@ -22,32 +23,35 @@ class DetailPresenter: ObservableObject {
   }
   func getDetailGame() {
     loadingState = true
-    detailUseCase.getDetailGame(with: game.id) { (result) in
-      switch result {
-      case .success(let detail):
-        print(detail)
-        DispatchQueue.main.async {
-          self.loadingState = false
-          self.detailGame = detail
-        }
-      case .failure(let error):
-        print(error)
-        DispatchQueue.main.async {
-          self.loadingState = false
+    detailUseCase.getDetailGame(with: game.id)
+      .subscribe(on: RunLoop.main)
+      .sink { completion in
+        switch completion {
+        case .failure(let error):
           self.errorMessage = error.localizedDescription
+          self.loadingState = false
+        case .finished:
+          self.loadingState = false
         }
+      } receiveValue: { detailGame in
+        self.detailGame = detailGame
       }
-    }
+      .store(in: &cancellables)
   }
   func favouriteGame(completion: @escaping (AlertOneMessage) -> Void) {
-    detailUseCase.addGame(from: self.game) { result in
-      switch result {
-      case .success:
-        completion(AlertOneMessage(title: "Success!", message: "Game already saved.", buttonText: "OK"))
-      case .failure(let error):
-        completion(AlertOneMessage(title: "Fail!", message: error.localizedDescription, buttonText: "OK"))
+    detailUseCase.updateFavoriteGame(by: game.id)
+      .subscribe(on: RunLoop.main)
+      .sink { _completion in
+        switch _completion {
+        case .failure(let error):
+          completion(AlertOneMessage(title: "Fail!", message: error.localizedDescription, buttonText: "OK"))
+        case .finished: break
+        }
+      } receiveValue: { game in
+        completion(AlertOneMessage(title: "Success!", message: game.favourite ? "\(game.name) saved into favourite games" : "\(game.name) is being removed from favourite games", buttonText: "OK"))
+        self.game = game
       }
-    }
+      .store(in: &cancellables)
   }
 
 }

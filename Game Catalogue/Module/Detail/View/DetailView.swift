@@ -60,9 +60,15 @@ struct DetailView: View {
                               self.showingAlert = true
                             }
                           }, label: {
-                            Image(systemName: "heart.fill")
-                              .foregroundColor(.white)
-                              .imageScale(.large)
+                            if presenter.game.favourite {
+                              Image(systemName: "heart.fill")
+                                .foregroundColor(.white)
+                                .imageScale(.large)
+                            } else {
+                              Image(systemName: "heart")
+                                .foregroundColor(.white)
+                                .imageScale(.large)
+                            }
                           })
     )
     .navigationBarBackButtonHidden(true)

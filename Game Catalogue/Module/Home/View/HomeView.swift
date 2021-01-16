@@ -16,17 +16,21 @@ struct HomeView: View {
       if presenter.loadingState {
         loadingIndicator
       } else {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack {
-                gameList
-            }.padding(8)
+        if presenter.errorMessage != "" {
+          Text(presenter.errorMessage)
+            .foregroundColor(.white)
+            .font(.largeTitle)
+        } else {
+          ScrollView(.vertical, showsIndicators: false) {
+              VStack {
+                  gameList
+              }.padding(8)
+          }
         }
       }
     }
     .onAppear {
-      if self.presenter.games.count == 0 {
-        self.presenter.getGameList()
-      }
+      self.presenter.getGames()
     }
   }
 }

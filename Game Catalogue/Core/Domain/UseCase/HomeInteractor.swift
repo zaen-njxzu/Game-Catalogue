@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 protocol HomeUseCase {
 
-  func getGameList(completion: @escaping (Result<[GameModel], Error>) -> Void)
+  func getGames() -> AnyPublisher<[GameModel], Error>
 
 }
 
@@ -20,13 +21,8 @@ class HomeInteractor: HomeUseCase {
   required init(repository: GameRepositoryProtocol) {
     self.repository = repository
   }
-
-  func getGameList(
-    completion: @escaping (Result<[GameModel], Error>) -> Void
-  ) {
-    repository.getGameList { result in
-      completion(result)
-    }
+  func getGames() -> AnyPublisher<[GameModel], Error> {
+    repository.getGames()
   }
 
 }

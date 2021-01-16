@@ -6,21 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 protocol GameRepositoryProtocol {
-
-  func getDetailGame(with id: Int, result: @escaping (Result<DetailGameModel, Error>) -> Void)
-  func getGameList(result: @escaping (Result<[GameModel], Error>) -> Void)
-  func getGames(result: @escaping (Result<[GameModel], Error>) -> Void)
-  func addGame(
-    from game: GameModel,
-    result: @escaping (Result<Bool, Error>) -> Void
-  )
-  func deleteGame(
-    with id: Int,
-    result: @escaping (Result<Bool, Error>) -> Void
-  )
-
+  func getGames() -> AnyPublisher<[GameModel], Error>
+  func getDetailGame(with id: Int) -> AnyPublisher<DetailGameModel, Error>
+  func getFavouriteGames() -> AnyPublisher<[GameModel], Error>
+  func updateFavoriteGame(by gameId: Int) -> AnyPublisher<GameModel, Error>
 }
 
 final class GameRepository: NSObject {
@@ -42,57 +34,39 @@ final class GameRepository: NSObject {
 }
 
 extension GameRepository: GameRepositoryProtocol {
-  func getGames(result: @escaping (Result<[GameModel], Error>) -> Void) {
-    self.local.getGames { localResponse in
-      switch localResponse {
-      case .success(let gameEntities):
-        result(.success(GameMapper.mapGameEntitiesToDomains(input: gameEntities)))
-      case .failure(let error):
-        result(.failure(error))
-      }
-    }
+  func getGames() -> AnyPublisher<[GameModel], Error> {
+    return self.local.getGames()
+      .flatMap { result -> AnyPublisher<[GameModel], Error> in
+        if result.isEmpty {
+          return self.remote.getGames()
+            .map { GameMapper.mapGameResponsesToEntiies(input: $0) }
+            .catch { _ in self.local.getGames() }
+            .flatMap { self.local.addGames(from: $0) }
+            .filter { $0 }
+            .flatMap { _ in self.local.getGames()
+              .map { GameMapper.mapGameEntitiesToDomains(input: $0) }
+            }
+            .eraseToAnyPublisher()
+        } else {
+          return self.local.getGames()
+            .map { GameMapper.mapGameEntitiesToDomains(input: $0) }
+            .eraseToAnyPublisher()
+        }
+      }.eraseToAnyPublisher()
   }
-  func addGame(from game: GameModel, result: @escaping (Result<Bool, Error>) -> Void) {
-    self.local.addGame(from: GameMapper.mapGameDomainToEntity(input: game)) { localResponse in
-      switch localResponse {
-      case .success(let isSuccess):
-        result(.success(isSuccess))
-      case .failure(let error):
-        result(.failure(error))
-      }
-    }
+  func getDetailGame(with id: Int) -> AnyPublisher<DetailGameModel, Error> {
+    return self.remote.getDetailGame(with: id)
+      .map { GameMapper.mapDetailGameResponseToDomain(input: $0) }
+      .eraseToAnyPublisher()
   }
-  func deleteGame(with id: Int, result: @escaping (Result<Bool, Error>) -> Void) {
-    self.local.deleteGame(with: id) { localResponse in
-      switch localResponse {
-      case .success(let isSuccess):
-        result(.success(isSuccess))
-      case .failure(let error):
-        result(.failure(error))
-      }
-    }
+  func getFavouriteGames() -> AnyPublisher<[GameModel], Error> {
+    return self.local.getFavouriteGames()
+      .map { GameMapper.mapGameEntitiesToDomains(input: $0) }
+      .eraseToAnyPublisher()
   }
-  func getDetailGame(with gameId: Int, result: @escaping (Result<DetailGameModel, Error>) -> Void) {
-    self.remote.getDetailGame(with: gameId) { (remoteResponse) in
-      switch remoteResponse {
-      case .success(let detailGameResponse):
-        result(.success(GameMapper.mapDetailGameResponseToDomain(input: detailGameResponse)))
-      case .failure(let error):
-        result(.failure(error))
-      }
-    }
-  }
-  func getGameList(
-      result: @escaping (Result<[GameModel], Error>) -> Void
-  ) {
-    self.remote.getGameList { (remoteResponses) in
-      switch remoteResponses {
-      case .success(let gameResponse):
-        let resultList = GameMapper.mapGameResponseToDomain(input: gameResponse)
-        result(.success(resultList))
-      case .failure(let error):
-        result(.failure(error))
-      }
-    }
+  func updateFavoriteGame(by gameId: Int) -> AnyPublisher<GameModel, Error> {
+    return self.local.updateFavoriteGame(by: gameId)
+      .map { GameMapper.mapGameEntityToDomain(input: $0) }
+      .eraseToAnyPublisher()
   }
 }

@@ -6,14 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 protocol FavouriteUseCase {
 
-  func getGames(completion: @escaping (Result<[GameModel], Error>) -> Void)
-  func deleteGame(
-    with gameId: Int,
-    completion: ((Result<Bool, Error>) -> Void)?
-  )
+  func getFavouriteGames() -> AnyPublisher<[GameModel], Error>
+  func updateFavoriteGame(by gameId: Int) -> AnyPublisher<GameModel, Error>
+
 }
 
 class FavouriteInteractor: FavouriteUseCase {
@@ -24,15 +23,12 @@ class FavouriteInteractor: FavouriteUseCase {
     self.repository = repository
   }
 
-  func getGames(completion: @escaping (Result<[GameModel], Error>) -> Void) {
-    repository.getGames { result in
-      completion(result)
-    }
+  func getFavouriteGames() -> AnyPublisher<[GameModel], Error> {
+    repository.getFavouriteGames()
   }
-  func deleteGame(with gameId: Int, completion: ((Result<Bool, Error>) -> Void)? = nil) {
-    repository.deleteGame(with: gameId) { result in
-      completion?(result)
-    }
+
+  func updateFavoriteGame(by gameId: Int) -> AnyPublisher<GameModel, Error> {
+    repository.updateFavoriteGame(by: gameId)
   }
 
 }

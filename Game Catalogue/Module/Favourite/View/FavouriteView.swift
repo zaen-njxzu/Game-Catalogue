@@ -13,7 +13,6 @@ struct FavouriteView: View {
   @State var currentId = 0
   @State var showingAlert = false
   @State var alertMessage: AlertOneMessage = AlertOneMessage()
-  
   var body: some View {
     ZStack {
       Color(UIColor.Ext.Blue)
@@ -79,7 +78,7 @@ extension FavouriteView {
                   if abs(width) > 100 {
                     let x = width > 0 ? 1000 : -1000
                     self.dragOffset = .init(width: x, height: 0)
-                    self.presenter.deleteGame(game: game) { (isSuccess, alert) in
+                    self.presenter.favouriteGame(game: game) { (isSuccess, alert) in
                       if isSuccess {
                         self.presenter.games.removeAll { result in
                           result.id == game.id
