@@ -37,7 +37,7 @@ struct DetailView: View {
       }
     }
     .navigationBarTitle(
-      Text("My Profile"),
+      Text("Detail Game"),
       displayMode: .inline
     )
     .navigationBarItems(leading: Button(
@@ -49,10 +49,6 @@ struct DetailView: View {
                               .imageScale(.large)
                           })
     )
-    .background(NavigationConfigurator { navController in
-      navController.navigationBar.barTintColor = UIColor.Ext.DarkBlue
-      navController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-    })
     .navigationBarBackButtonHidden(true)
     .navigationViewStyle(StackNavigationViewStyle())
   }
@@ -79,14 +75,14 @@ extension DetailView {
           HStack {
             Text("Description")
               .padding(.leading, 20)
-              .font(.system(size: 12))
+              .font(.callout)
             Spacer()
           }.padding(.vertical, 2)
           HStack {
             Text(detail.description)
-              .bold()
+              .fontWeight(.semibold)
               .padding(.leading, 20)
-              .font(.system(size: 12))
+              .font(.callout)
             Spacer()
           }.padding(.vertical, 2)
         }
@@ -103,10 +99,10 @@ extension DetailView {
       HStack {
         Text(title)
           .padding(.leading, 20)
-          .font(.system(size: 12))
+          .font(.callout)
         Text(value)
-          .font(.system(size: 12))
-          .bold()
+          .font(.callout)
+          .fontWeight(.semibold)
         Spacer()
       }
     }
@@ -116,7 +112,7 @@ extension DetailView {
           Color(UIColor.Ext.Cream)
           HStack(alignment: .center, spacing: 6) {
             Text(rating)
-              .font(.system(size: 12))
+              .font(.callout)
               .padding(.horizontal, 2)
             Image(systemName: "star.fill")
               .resizable()

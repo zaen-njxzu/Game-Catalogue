@@ -11,41 +11,24 @@ struct HomeView: View {
   @ObservedObject var presenter: HomePresenter
 
   var body: some View {
-    ZStack {
-      Color(UIColor.Ext.Blue)
-      if presenter.loadingState {
-        loadingIndicator
-      } else {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack {
-                gameList
-            }.padding(8)
+      ZStack {
+        Color(UIColor.Ext.Blue)
+        if presenter.loadingState {
+          loadingIndicator
+        } else {
+          ScrollView(.vertical, showsIndicators: false) {
+              VStack {
+                  gameList
+              }.padding(8)
+          }
+        }
+      }
+      .onAppear {
+        if self.presenter.games.count == 0 {
+          self.presenter.getGameList()
         }
       }
     }
-    .onAppear {
-      if self.presenter.games.count == 0 {
-        self.presenter.getGameList()
-      }
-    }
-    .navigationBarTitle(
-      Text("Games List"),
-      displayMode: .inline
-    )
-    .navigationBarItems(trailing: NavigationLink(
-                          destination: ProfileView(),
-                          label: {
-                              Image(systemName: "person.fill")
-                                  .foregroundColor(.white)
-                          })
-    )
-    .background(NavigationConfigurator { navController in
-      navController.navigationBar.barTintColor = UIColor.Ext.DarkBlue
-      navController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-    })
-    .navigationViewStyle(StackNavigationViewStyle())
-
-  }
 }
 
 extension HomeView {

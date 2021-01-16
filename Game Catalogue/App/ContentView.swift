@@ -9,10 +9,42 @@ import SwiftUI
 
 struct ContentView: View {
   @EnvironmentObject var homePresenter: HomePresenter
+  @State var tabSelection: Tabs = .tabHome
 
   var body: some View {
     NavigationView {
-      HomeView(presenter: homePresenter)
+      TabView(selection: $tabSelection) {
+        HomeView(presenter: homePresenter)
+        .tabItem {
+          Image(systemName: "gamecontroller.fill")
+          Text("Games List")
+        }
+        .tag(Tabs.tabHome)
+        ProfileView()
+          .tabItem {
+            Image(systemName: "person.circle.fill")
+            Text("My Profile")
+          }
+          .tag(Tabs.tabProfile)
+      }
+      .navigationBarTitle(
+        Text(tabSelection.title),
+        displayMode: .inline
+      )
+      .background(NavigationConfigurator { navController in
+        navController.navigationBar.barTintColor = UIColor.Ext.DarkBlue
+        navController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+      })
+      .navigationViewStyle(StackNavigationViewStyle())
+    }
+  }
+  enum Tabs {
+    case tabHome, tabProfile
+    var title: String {
+      switch self {
+      case .tabHome: return "Games List"
+      case .tabProfile: return "My Profile"
+      }
     }
   }
 }

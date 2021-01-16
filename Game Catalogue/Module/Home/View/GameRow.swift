@@ -41,12 +41,12 @@ extension GameRow {
       VStack(alignment: .trailing, spacing: 8) {
         Text(game.name)
           .bold()
-          .font(.system(size: 14))
+          .font(.callout)
         Text(game.releasedAt)
-          .font(.system(size: 12))
+          .font(.callout)
         HStack(alignment: .center, spacing: 4) {
           Text(game.rating)
-            .font(.system(size: 12))
+            .font(.callout)
           Image(systemName: "star.fill")
             .resizable()
             .foregroundColor(Color(UIColor.Ext.DarkBlue))

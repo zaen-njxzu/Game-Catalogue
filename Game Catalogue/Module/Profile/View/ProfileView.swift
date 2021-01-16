@@ -22,6 +22,7 @@ struct ProfileView: View {
             .shadow(radius: 4)
             .padding()
           Text("Zaenal Arsy")
+            .font(.headline)
             .bold()
           Spacer()
         }
@@ -34,25 +35,5 @@ struct ProfileView: View {
         Spacer()
       }
     }
-    .navigationBarTitle(
-      Text("My Profile"),
-        displayMode: .inline
-    )
-    .navigationBarItems(leading: Button(
-                          action: {
-                            presentationMode.wrappedValue.dismiss()
-                          }, label: {
-                            Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-                            .imageScale(.large)
-                          })
-    )
-    .background(NavigationConfigurator { navController in
-      navController.navigationBar.barTintColor = UIColor.Ext.DarkBlue
-      navController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-    })
-    .navigationBarBackButtonHidden(true)
-    .navigationViewStyle(StackNavigationViewStyle())
-
   }
 }
