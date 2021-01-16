@@ -10,19 +10,19 @@ import SwiftUI
 class DetailPresenter: ObservableObject {
 
   private let detailUseCase: DetailUseCase
-  private let id: Int
+  private let game: GameModel
 
   @Published var detailGame: DetailGameModel?
   @Published var errorMessage: String = ""
   @Published var loadingState: Bool = false
 
-  init(id: Int, detailUseCase: DetailUseCase) {
+  init(game: GameModel, detailUseCase: DetailUseCase) {
     self.detailUseCase = detailUseCase
-    self.id = id
+    self.game = game
   }
   func getDetailGame() {
     loadingState = true
-    detailUseCase.getDetailGame(with: id) { (result) in
+    detailUseCase.getDetailGame(with: game.id) { (result) in
       switch result {
       case .success(let detail):
         print(detail)
@@ -36,6 +36,16 @@ class DetailPresenter: ObservableObject {
           self.loadingState = false
           self.errorMessage = error.localizedDescription
         }
+      }
+    }
+  }
+  func favouriteGame(completion: @escaping (AlertOneMessage) -> Void) {
+    detailUseCase.addGame(from: self.game) { result in
+      switch result {
+      case .success:
+        completion(AlertOneMessage(title: "Success!", message: "Game already saved.", buttonText: "OK"))
+      case .failure(let error):
+        completion(AlertOneMessage(title: "Fail!", message: error.localizedDescription, buttonText: "OK"))
       }
     }
   }

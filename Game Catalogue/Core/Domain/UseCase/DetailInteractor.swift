@@ -10,7 +10,10 @@ import Foundation
 protocol DetailUseCase {
 
   func getDetailGame(with id: Int, completion: @escaping (Result<DetailGameModel, Error>) -> Void)
-
+  func addGame(
+    from games: GameModel,
+    completion: ((Result<Bool, Error>) -> Void)?
+  )
 }
 
 class DetailInteractor: DetailUseCase {
@@ -29,6 +32,11 @@ class DetailInteractor: DetailUseCase {
   ) {
     repository.getDetailGame(with: id) { result in
       completion(result)
+    }
+  }
+  func addGame(from game: GameModel, completion: ((Result<Bool, Error>) -> Void)? = nil) {
+    repository.addGame(from: game) { result in
+      completion?(result)
     }
   }
 

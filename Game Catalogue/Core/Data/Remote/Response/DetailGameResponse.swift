@@ -27,11 +27,6 @@ struct DetailGameResponse: Codable {
     let ratingDouble = try container.decode(Double.self, forKey: .rating)
     rating = "\(ratingDouble)/5"
     let releasedDate = try container.decode(String.self, forKey: .released)
-    let inputFormatter = DateFormatter()
-    inputFormatter.dateFormat = "yyyy-MM-dd"
-    let showDate = inputFormatter.date(from: releasedDate)
-    inputFormatter.dateFormat = "dd MMMM yyyy"
-    let resultString = inputFormatter.string(from: showDate!)
-    released = resultString
+    released = releasedDate.toDate(from: "yyyy-MM-dd", to: "dd MMMM yyyy", with: releasedDate)
   }
 }

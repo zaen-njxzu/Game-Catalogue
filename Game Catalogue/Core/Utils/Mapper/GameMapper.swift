@@ -35,4 +35,28 @@ final class GameMapper {
       rating: detailGameResponse.rating
     )
   }
+  static func mapGameDomainToEntity(
+    input game: GameModel
+  ) -> GameEntity {
+    let newGame = GameEntity()
+    newGame.id = game.id
+    newGame.name = game.name
+    newGame.released = game.releasedAt
+    newGame.backgroundImage = game.imageUrl
+    newGame.rating = game.rating
+    return newGame
+  }
+  static func mapGameEntitiesToDomains(
+    input gameEntities: [GameEntity]
+  ) -> [GameModel] {
+    return gameEntities.map { result in
+      GameModel(
+        id: result.id,
+        name: result.name,
+        releasedAt: result.released,
+        imageUrl: result.backgroundImage,
+        rating: result.rating
+      )
+    }
+  }
 }

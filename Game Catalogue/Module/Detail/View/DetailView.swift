@@ -11,6 +11,8 @@ import SDWebImageSwiftUI
 struct DetailView: View {
   @Environment(\.presentationMode) var presentationMode
   @ObservedObject var presenter: DetailPresenter
+  @State var showingAlert = false
+  @State var alertMessage: AlertOneMessage = AlertOneMessage()
 
   var body: some View {
     ZStack {
@@ -25,11 +27,14 @@ struct DetailView: View {
             Spacer()
           } else {
             Text("Empty Data")
-              .bold()
               .foregroundColor(.white)
+              .font(.largeTitle)
           }
         }
       }
+    }
+    .alert(isPresented: $showingAlert) {
+      Alert(title: Text(alertMessage.title), message: Text(alertMessage.message), dismissButton: .default(Text(alertMessage.buttonText)))
     }
     .onAppear {
       if presenter.detailGame == nil {
@@ -45,6 +50,17 @@ struct DetailView: View {
                             presentationMode.wrappedValue.dismiss()
                           }, label: {
                             Image(systemName: "chevron.left")
+                              .foregroundColor(.white)
+                              .imageScale(.large)
+                          }),
+                        trailing: Button(
+                          action: {
+                            presenter.favouriteGame { result in
+                              self.alertMessage = result
+                              self.showingAlert = true
+                            }
+                          }, label: {
+                            Image(systemName: "heart.fill")
                               .foregroundColor(.white)
                               .imageScale(.large)
                           })

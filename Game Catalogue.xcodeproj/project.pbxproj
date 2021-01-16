@@ -19,6 +19,17 @@
 		00099C9325AB58E700843AF4 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00099C9225AB58E700843AF4 /* SDWebImageSwiftUI */; };
 		00099C9825AB671B00843AF4 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00099C9725AB671B00843AF4 /* RoundedCorners.swift */; };
 		00099C9D25AB6B7800843AF4 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00099C9C25AB6B7800843AF4 /* View+Ext.swift */; };
+		003018EA25B2ABD2004F9925 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 003018E925B2ABD2004F9925 /* Realm */; };
+		003018EC25B2ABD2004F9925 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 003018EB25B2ABD2004F9925 /* RealmSwift */; };
+		003018F325B2AC11004F9925 /* GameEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003018F225B2AC11004F9925 /* GameEntity.swift */; };
+		003018F625B2AC29004F9925 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003018F525B2AC29004F9925 /* LocalDataSource.swift */; };
+		003018F925B2AC57004F9925 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003018F825B2AC57004F9925 /* String+Ext.swift */; };
+		003018FC25B2B2FF004F9925 /* RealmResults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003018FB25B2B2FF004F9925 /* RealmResults+Ext.swift */; };
+		0030190325B2BA03004F9925 /* FavouritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030190225B2BA03004F9925 /* FavouritePresenter.swift */; };
+		0030190625B2BA27004F9925 /* FavouriteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030190525B2BA27004F9925 /* FavouriteInteractor.swift */; };
+		0030190925B2C185004F9925 /* FavouriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030190825B2C185004F9925 /* FavouriteRouter.swift */; };
+		0030190C25B2C205004F9925 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030190B25B2C205004F9925 /* FavouriteView.swift */; };
+		0030190F25B2CF5B004F9925 /* CustomAlert+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0030190E25B2CF5B004F9925 /* CustomAlert+Ext.swift */; };
 		009092D425B1CA0A00508A60 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 009092D325B1CA0A00508A60 /* .swiftlint.yml */; };
 		00AFAD1F25AD16D700C4330C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFAD1E25AD16D700C4330C /* DetailView.swift */; };
 		00AFAD2225AD16FF00C4330C /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFAD2125AD16FF00C4330C /* DetailPresenter.swift */; };
@@ -55,6 +66,15 @@
 		00099C8A25AB584200843AF4 /* GameRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRow.swift; sourceTree = "<group>"; };
 		00099C9725AB671B00843AF4 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		00099C9C25AB6B7800843AF4 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		003018F225B2AC11004F9925 /* GameEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEntity.swift; sourceTree = "<group>"; };
+		003018F525B2AC29004F9925 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		003018F825B2AC57004F9925 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		003018FB25B2B2FF004F9925 /* RealmResults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmResults+Ext.swift"; sourceTree = "<group>"; };
+		0030190225B2BA03004F9925 /* FavouritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePresenter.swift; sourceTree = "<group>"; };
+		0030190525B2BA27004F9925 /* FavouriteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteInteractor.swift; sourceTree = "<group>"; };
+		0030190825B2C185004F9925 /* FavouriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRouter.swift; sourceTree = "<group>"; };
+		0030190B25B2C205004F9925 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
+		0030190E25B2CF5B004F9925 /* CustomAlert+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomAlert+Ext.swift"; sourceTree = "<group>"; };
 		009092D325B1CA0A00508A60 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		00AFAD1E25AD16D700C4330C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		00AFAD2125AD16FF00C4330C /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
@@ -83,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				003018EC25B2ABD2004F9925 /* RealmSwift in Frameworks */,
+				003018EA25B2ABD2004F9925 /* Realm in Frameworks */,
 				00099C9325AB58E700843AF4 /* SDWebImageSwiftUI in Frameworks */,
 				00099C8F25AB58B400843AF4 /* Alamofire in Frameworks */,
 			);
@@ -154,6 +176,7 @@
 		00099C8125AB567A00843AF4 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				003018FE25B2B9B9004F9925 /* Favourite */,
 				00E62BC725ACC21300A285B7 /* Detail */,
 				00E62B8C25AC9CFD00A285B7 /* Profile */,
 				00099C8225AB579000843AF4 /* Home */,
@@ -223,8 +246,62 @@
 				00099C9C25AB6B7800843AF4 /* View+Ext.swift */,
 				00E62A8E25ABEF1E00A285B7 /* UIColor+Ext.swift */,
 				00E62B9F25ACB72C00A285B7 /* CustomError+Ext.swift */,
+				003018F825B2AC57004F9925 /* String+Ext.swift */,
+				003018FB25B2B2FF004F9925 /* RealmResults+Ext.swift */,
+				0030190E25B2CF5B004F9925 /* CustomAlert+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		003018EE25B2ABE9004F9925 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				003018F025B2ABF3004F9925 /* Entity */,
+				003018F525B2AC29004F9925 /* LocalDataSource.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		003018F025B2ABF3004F9925 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				003018F225B2AC11004F9925 /* GameEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		003018FE25B2B9B9004F9925 /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				0030190125B2B9DB004F9925 /* Router */,
+				0030190025B2B9D4004F9925 /* Presenter */,
+				003018FF25B2B9CD004F9925 /* View */,
+			);
+			path = Favourite;
+			sourceTree = "<group>";
+		};
+		003018FF25B2B9CD004F9925 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0030190B25B2C205004F9925 /* FavouriteView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0030190025B2B9D4004F9925 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0030190225B2BA03004F9925 /* FavouritePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0030190125B2B9DB004F9925 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				0030190825B2C185004F9925 /* FavouriteRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		00AFAD1C25AD16AE00C4330C /* View */ = {
@@ -262,6 +339,7 @@
 		00E62B9225ACB02F00A285B7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				003018EE25B2ABE9004F9925 /* Local */,
 				00E62B9325ACB03700A285B7 /* Remote */,
 				00E62BA625ACBA2000A285B7 /* GameRepository.swift */,
 			);
@@ -325,6 +403,7 @@
 			children = (
 				00E62BB625ACBF8F00A285B7 /* HomeInteractor.swift */,
 				00E62BBA25ACBFF300A285B7 /* DetailInteractor.swift */,
+				0030190525B2BA27004F9925 /* FavouriteInteractor.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -366,6 +445,8 @@
 			packageProductDependencies = (
 				00099C8E25AB58B400843AF4 /* Alamofire */,
 				00099C9225AB58E700843AF4 /* SDWebImageSwiftUI */,
+				003018E925B2ABD2004F9925 /* Realm */,
+				003018EB25B2ABD2004F9925 /* RealmSwift */,
 			);
 			productName = "Game Catalogue";
 			productReference = 00099C6625AB560200843AF4 /* Game Catalogue.app */;
@@ -397,6 +478,7 @@
 			packageReferences = (
 				00099C8D25AB58B400843AF4 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				00099C9125AB58E700843AF4 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				003018E825B2ABD2004F9925 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 00099C6725AB560200843AF4 /* Products */;
 			projectDirPath = "";
@@ -446,23 +528,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0030190325B2BA03004F9925 /* FavouritePresenter.swift in Sources */,
 				00099C9D25AB6B7800843AF4 /* View+Ext.swift in Sources */,
 				00099C6A25AB560200843AF4 /* AppDelegate.swift in Sources */,
+				0030190F25B2CF5B004F9925 /* CustomAlert+Ext.swift in Sources */,
 				00AFAD2225AD16FF00C4330C /* DetailPresenter.swift in Sources */,
 				00E62BC225ACC19100A285B7 /* HomePresenter.swift in Sources */,
 				00E62BA425ACB7A000A285B7 /* APICall.swift in Sources */,
 				00E62BB725ACBF8F00A285B7 /* HomeInteractor.swift in Sources */,
 				00E62B9625ACB06100A285B7 /* RemoteDataSource.swift in Sources */,
 				00E62B8F25AC9D1500A285B7 /* ProfileView.swift in Sources */,
+				003018FC25B2B2FF004F9925 /* RealmResults+Ext.swift in Sources */,
+				0030190625B2BA27004F9925 /* FavouriteInteractor.swift in Sources */,
 				00AFAD1F25AD16D700C4330C /* DetailView.swift in Sources */,
+				0030190C25B2C205004F9925 /* FavouriteView.swift in Sources */,
 				00099C8725AB581B00843AF4 /* HomeView.swift in Sources */,
 				00099C8B25AB584200843AF4 /* GameRow.swift in Sources */,
 				00099C6C25AB560200843AF4 /* SceneDelegate.swift in Sources */,
 				00E62A8F25ABEF1E00A285B7 /* UIColor+Ext.swift in Sources */,
 				00E62BA725ACBA2000A285B7 /* GameRepository.swift in Sources */,
+				003018F325B2AC11004F9925 /* GameEntity.swift in Sources */,
+				0030190925B2C185004F9925 /* FavouriteRouter.swift in Sources */,
 				00099C9825AB671B00843AF4 /* RoundedCorners.swift in Sources */,
 				00E62BC525ACC1F300A285B7 /* HomeRouter.swift in Sources */,
 				00E62A9325ABF38200A285B7 /* NavigationConfigurator.swift in Sources */,
+				003018F925B2AC57004F9925 /* String+Ext.swift in Sources */,
+				003018F625B2AC29004F9925 /* LocalDataSource.swift in Sources */,
 				00E62BBF25ACC09C00A285B7 /* Injection.swift in Sources */,
 				00E62BC925ACC2B500A285B7 /* ActivityIndicator.swift in Sources */,
 				00E62BB325ACBC2100A285B7 /* GameMapper.swift in Sources */,
@@ -688,6 +779,14 @@
 				minimumVersion = 1.5.0;
 			};
 		};
+		003018E825B2ABD2004F9925 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -700,6 +799,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00099C9125AB58E700843AF4 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		003018E925B2ABD2004F9925 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 003018E825B2ABD2004F9925 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		003018EB25B2ABD2004F9925 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 003018E825B2ABD2004F9925 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

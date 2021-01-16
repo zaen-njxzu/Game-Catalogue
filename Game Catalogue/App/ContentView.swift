@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @EnvironmentObject var homePresenter: HomePresenter
+  @EnvironmentObject var favouritePresenter: FavouritePresenter
   @State var tabSelection: Tabs = .tabHome
 
   var body: some View {
@@ -26,6 +27,12 @@ struct ContentView: View {
             Text("My Profile")
           }
           .tag(Tabs.tabProfile)
+        FavouriteView(presenter: favouritePresenter)
+          .tabItem {
+            Image(systemName: "heart.fill")
+            Text("Favourite Games")
+          }
+          .tag(Tabs.tabFavourite)
       }
       .navigationBarTitle(
         Text(tabSelection.title),
@@ -39,11 +46,12 @@ struct ContentView: View {
     }
   }
   enum Tabs {
-    case tabHome, tabProfile
+    case tabHome, tabProfile, tabFavourite
     var title: String {
       switch self {
       case .tabHome: return "Games List"
       case .tabProfile: return "My Profile"
+      case .tabFavourite: return "Favourite Games"
       }
     }
   }

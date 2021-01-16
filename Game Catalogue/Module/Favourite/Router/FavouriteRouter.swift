@@ -1,14 +1,13 @@
 //
-//  HomeRouter.swift
+//  FavouriteRouter.swift
 //  Game Catalogue
 //
-//  Created by Zaenal Arsy on 12/01/21.
+//  Created by Zaenal Arsy on 16/01/21.
 //
 
 import SwiftUI
 
-class HomeRouter {
-
+class FavouriteRouter {
   func makeDetailView(for game: GameModel) -> some View {
     let detailUseCase = Injection.init().provideDetail()
     let presenter = DetailPresenter(game: game, detailUseCase: detailUseCase)

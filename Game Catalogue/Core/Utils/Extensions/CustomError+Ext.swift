@@ -19,3 +19,16 @@ enum URLError: LocalizedError {
   }
 
 }
+
+enum DatabaseError: LocalizedError {
+
+  case invalidInstance
+  case requestFailed
+  var errorDescription: String? {
+    switch self {
+    case .invalidInstance: return "Database can't instance."
+    case .requestFailed: return "Your request failed."
+    }
+  }
+
+}

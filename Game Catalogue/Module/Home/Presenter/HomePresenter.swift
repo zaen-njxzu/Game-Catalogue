@@ -37,10 +37,10 @@ class HomePresenter: ObservableObject {
     }
   }
   func linkBuilder<Content: View>(
-    for gameId: Int,
+    for game: GameModel,
     @ViewBuilder content: () -> Content
   ) -> some View {
-    NavigationLink(destination: router.makeDetailView(for: gameId)) { content() }
+    NavigationLink(destination: router.makeDetailView(for: game)) { content() }
   }
 
 }
