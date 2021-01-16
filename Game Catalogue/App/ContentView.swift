@@ -21,18 +21,18 @@ struct ContentView: View {
           Text("Games List")
         }
         .tag(Tabs.tabHome)
-        ProfileView()
-          .tabItem {
-            Image(systemName: "person.circle.fill")
-            Text("My Profile")
-          }
-          .tag(Tabs.tabProfile)
         FavouriteView(presenter: favouritePresenter)
           .tabItem {
             Image(systemName: "heart.fill")
             Text("Favourite Games")
           }
           .tag(Tabs.tabFavourite)
+        ProfileView()
+          .tabItem {
+            Image(systemName: "person.circle.fill")
+            Text("My Profile")
+          }
+          .tag(Tabs.tabProfile)
       }
       .navigationBarTitle(
         Text(tabSelection.title),
