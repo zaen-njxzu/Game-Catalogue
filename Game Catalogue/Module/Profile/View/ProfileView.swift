@@ -22,7 +22,6 @@ struct ProfileView: View {
             .shadow(radius: 4)
             .padding()
           Text("Zaenal Arsy")
-            .font(.headline)
             .bold()
           Spacer()
         }

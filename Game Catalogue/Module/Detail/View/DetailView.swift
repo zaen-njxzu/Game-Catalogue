@@ -23,7 +23,6 @@ struct DetailView: View {
         } else {
           if let detail = presenter.detailGame {
             mainContent(detail: detail)
-              .padding(.top, 20)
             Spacer()
           } else {
             Text("Empty Data")
@@ -96,34 +95,29 @@ extension DetailView {
           infoDetail(title: "Released At: ", value: detail.releasedAt)
           HStack {
             Text("Description")
+              .foregroundColor(.white)
               .padding(.leading, 20)
-              .font(.callout)
             Spacer()
           }.padding(.vertical, 2)
           HStack {
             Text(detail.description)
+              .foregroundColor(.white)
               .fontWeight(.semibold)
               .padding(.leading, 20)
-              .font(.callout)
             Spacer()
           }.padding(.vertical, 2)
         }
         Spacer()
       }
-      .frame(width: UIScreen.main.bounds.width - 48, height: 400)
-      .cornerRadius(20)
-      .background(Color.white
-                  .cornerRadius(20)
-                  .shadow(color: Color(UIColor.Ext.DarkBlue), radius: 6, x: 4.0, y: 4.0)
-      )
+      .padding(10)
     }
     func infoDetail(title: String, value: String) -> some View {
       HStack {
         Text(title)
+          .foregroundColor(.white)
           .padding(.leading, 20)
-          .font(.callout)
         Text(value)
-          .font(.callout)
+          .foregroundColor(.white)
           .fontWeight(.semibold)
         Spacer()
       }
@@ -152,6 +146,7 @@ extension DetailView {
         .resizable()
         .indicator(.activity)
         .cornerRadius(10, corners: [.allCorners])
+        .shadow(color: Color(UIColor.Ext.DarkBlue), radius: 6, x: 4, y: 4)
         .transition(.fade(duration: 0.5))
         .frame(width: 220.0, height: 110.0, alignment: .center)
     }
