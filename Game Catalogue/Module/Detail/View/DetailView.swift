@@ -144,6 +144,9 @@ extension DetailView {
     }
     func gameImage(url: String) -> some View {
       WebImage(url: URL(string: url))
+        .placeholder {
+            Rectangle().foregroundColor(.white)
+        }
         .resizable()
         .indicator(.activity)
         .cornerRadius(10, corners: [.allCorners])

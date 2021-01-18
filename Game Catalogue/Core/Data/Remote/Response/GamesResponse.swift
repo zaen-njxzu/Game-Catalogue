@@ -13,8 +13,8 @@ struct GamesResponse: Codable {
 
 struct GameResponse: Codable {
   let id: Int
-  let name, released, backgroundImage: String
-  let rating: String
+  let name, rating: String
+  let backgroundImage, released: String?
 
   enum CodingKeys: String, CodingKey {
     case id, name, released, rating
@@ -25,10 +25,14 @@ struct GameResponse: Codable {
 
     id = try container.decode(Int.self, forKey: .id)
     name = try container.decode(String.self, forKey: .name)
-    backgroundImage = try container.decode(String.self, forKey: .backgroundImage)
+    backgroundImage = try container.decode(String?.self, forKey: .backgroundImage)
     let ratingDouble = try container.decode(Double.self, forKey: .rating)
     rating = "\(ratingDouble)/5"
-    let releasedDate = try container.decode(String.self, forKey: .released)
-    released = releasedDate.toDate(from: "yyyy-MM-dd", to: "dd MMMM yyyy", with: releasedDate)
+    let releasedDate = try container.decode(String?.self, forKey: .released)
+    if let safeReleasedDate = releasedDate {
+      released = safeReleasedDate.toDate(from: "yyyy-MM-dd", to: "dd MMMM yyyy", with: safeReleasedDate)
+    } else {
+      released = ""
+    }
   }
 }

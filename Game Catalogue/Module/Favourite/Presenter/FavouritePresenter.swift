@@ -37,7 +37,7 @@ class FavouritePresenter: ObservableObject {
       }
   }
   func favouriteGame(game: GameModel, completion: @escaping (Bool, AlertOneMessage) -> Void) {
-    favouriteUseCase.updateFavoriteGame(by: game.id)
+    favouriteUseCase.updateFavoriteGame(by: game)
       .subscribe(on: RunLoop.main)
       .sink { _completion in
         switch _completion {

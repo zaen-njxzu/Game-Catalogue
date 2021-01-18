@@ -10,10 +10,9 @@ import Alamofire
 import Combine
 
 protocol RemoteDataSourceProtocol: class {
-
   func getGames() -> AnyPublisher<[GameResponse], Error>
   func getDetailGame(with id: Int) -> AnyPublisher<DetailGameResponse, Error>
-
+  func searchGames(query: String) -> AnyPublisher<[GameResponse], Error>
 }
 
 final class RemoteDataSource: NSObject {
@@ -47,6 +46,25 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
           .responseDecodable(of: GamesResponse.self) { response in
             switch response.result {
             case .success(let value): completion(.success(value.results))
+            case .failure: completion(.failure(URLError.invalidResponse))
+            }
+        }
+      }
+    }.eraseToAnyPublisher()
+  }
+  func searchGames(query: String) -> AnyPublisher<[GameResponse], Error> {
+    return Future<[GameResponse], Error> { completion in
+      let params: Parameters = [
+        "search": query
+      ]
+      if let url = URL(string: Endpoints.Gets.searchGame.url) {
+        AF.request(url, method: .get, parameters: params)
+          .validate()
+          .responseDecodable(of: GamesResponse.self) { response in
+            switch response.result {
+            case .success(let value):
+              print(value)
+              completion(.success(value.results))
             case .failure: completion(.failure(URLError.invalidResponse))
             }
         }

@@ -11,7 +11,7 @@ import Combine
 protocol FavouriteUseCase {
 
   func getFavouriteGames() -> AnyPublisher<[GameModel], Error>
-  func updateFavoriteGame(by gameId: Int) -> AnyPublisher<GameModel, Error>
+  func updateFavoriteGame(by game: GameModel) -> AnyPublisher<GameModel, Error>
 
 }
 
@@ -27,8 +27,8 @@ class FavouriteInteractor: FavouriteUseCase {
     repository.getFavouriteGames()
   }
 
-  func updateFavoriteGame(by gameId: Int) -> AnyPublisher<GameModel, Error> {
-    repository.updateFavoriteGame(by: gameId)
+  func updateFavoriteGame(by game: GameModel) -> AnyPublisher<GameModel, Error> {
+    repository.updateFavoriteGame(by: game)
   }
 
 }

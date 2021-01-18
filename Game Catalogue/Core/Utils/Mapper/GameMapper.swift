@@ -8,15 +8,43 @@
 import Foundation
 
 final class GameMapper {
-  static func mapGameResponsesToEntiies(
+  static func mapGamesDomainToEntities(
+    input games: [GameModel]
+  ) -> [GameEntity] {
+    return games.map { result in
+      let newGame = GameEntity()
+      newGame.id = result.id
+      newGame.name = result.name
+      newGame.released = result.releasedAt
+      newGame.backgroundImage = result.imageUrl
+      newGame.rating = result.rating
+      newGame.favourite = false
+      return newGame
+    }
+  }
+  static func mapGameResponsesToDomain(
+    input games: [GameResponse]
+  ) -> [GameModel] {
+    return games.map { result in
+      return GameModel(
+        id: result.id,
+        name: result.name,
+        releasedAt: result.released ?? "",
+        imageUrl: result.backgroundImage ?? "",
+        rating: result.rating,
+        favourite: false
+      )
+    }
+  }
+  static func mapGameResponsesToEntities(
     input games: [GameResponse]
   ) -> [GameEntity] {
     return games.map { result in
       let newGame = GameEntity()
       newGame.id = result.id
       newGame.name = result.name
-      newGame.released = result.released
-      newGame.backgroundImage = result.backgroundImage
+      newGame.released = result.released ?? ""
+      newGame.backgroundImage = result.backgroundImage ?? ""
       newGame.rating = result.rating
       newGame.favourite = false
       return newGame

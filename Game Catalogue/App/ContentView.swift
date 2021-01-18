@@ -10,17 +10,24 @@ import SwiftUI
 struct ContentView: View {
   @EnvironmentObject var homePresenter: HomePresenter
   @EnvironmentObject var favouritePresenter: FavouritePresenter
+  @EnvironmentObject var searchPresenter: SearchPresenter
   @State var tabSelection: Tabs = .tabHome
 
   var body: some View {
     NavigationView {
       TabView(selection: $tabSelection) {
         HomeView(presenter: homePresenter)
-        .tabItem {
-          Image(systemName: "gamecontroller.fill")
-          Text("Games List")
-        }
-        .tag(Tabs.tabHome)
+          .tabItem {
+            Image(systemName: "gamecontroller.fill")
+            Text("Games List")
+          }
+          .tag(Tabs.tabHome)
+        SearchView(presenter: searchPresenter)
+          .tabItem {
+            Image(systemName: "magnifyingglass")
+            Text("Search Games")
+          }
+          .tag(Tabs.tabSearch)
         FavouriteView(presenter: favouritePresenter)
           .tabItem {
             Image(systemName: "heart.fill")
@@ -42,12 +49,13 @@ struct ContentView: View {
     }
   }
   enum Tabs {
-    case tabHome, tabProfile, tabFavourite
+    case tabHome, tabProfile, tabFavourite, tabSearch
     var title: String {
       switch self {
       case .tabHome: return "Games List"
       case .tabProfile: return "My Profile"
       case .tabFavourite: return "Favourite Games"
+      case .tabSearch: return "Search Games"
       }
     }
   }

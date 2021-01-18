@@ -39,7 +39,7 @@ class DetailPresenter: ObservableObject {
       .store(in: &cancellables)
   }
   func favouriteGame(completion: @escaping (AlertOneMessage) -> Void) {
-    detailUseCase.updateFavoriteGame(by: game.id)
+    detailUseCase.updateFavoriteGame(by: game)
       .subscribe(on: RunLoop.main)
       .sink { _completion in
         switch _completion {

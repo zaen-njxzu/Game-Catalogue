@@ -1,29 +1,29 @@
 //
-//  HomePresenter.swift
+//  SearchPresenter.swift
 //  Game Catalogue
 //
-//  Created by Zaenal Arsy on 12/01/21.
+//  Created by Zaenal Arsy on 18/01/21.
 //
 
 import SwiftUI
 import Combine
 
-class HomePresenter: ObservableObject {
+class SearchPresenter: ObservableObject {
   private var cancellables: Set<AnyCancellable> = []
-  private let router = HomeRouter()
-  private let homeUseCase: HomeUseCase
+  private let router = SearchRouter()
+  private let searchUseCase: SearchUseCase
 
   @Published var games: [GameModel] = []
   @Published var errorMessage: String = ""
   @Published var loadingState: Bool = false
+  var query = ""
 
-  init(homeUseCase: HomeUseCase) {
-    self.homeUseCase = homeUseCase
+  init(searchUseCase: SearchUseCase) {
+    self.searchUseCase = searchUseCase
   }
-  func getGames() {
+  func searchGames() {
     loadingState = true
-    homeUseCase.getGames()
-      .receive(on: RunLoop.main)
+    searchUseCase.searchGames(query: query)
       .sink { completion in
         switch completion {
         case .failure(let error):
@@ -36,6 +36,7 @@ class HomePresenter: ObservableObject {
         self.games = games
       }
       .store(in: &cancellables)
+
   }
   func linkBuilder<Content: View>(
     for game: GameModel,

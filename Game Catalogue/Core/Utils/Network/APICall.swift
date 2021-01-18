@@ -23,10 +23,12 @@ enum Endpoints {
   enum Gets: Endpoint {
     case gameList
     case detailGame
+    case searchGame
     public var url: String {
       switch self {
       case .gameList: return "\(API.baseUrl)games"
       case .detailGame: return "\(API.baseUrl)games/"
+      case .searchGame: return "\(API.baseUrl)games"
       }
     }
   }
