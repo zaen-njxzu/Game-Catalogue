@@ -128,6 +128,7 @@ extension DetailView {
           Color(UIColor.Ext.Cream)
           HStack(alignment: .center, spacing: 6) {
             Text(rating)
+              .foregroundColor(.black)
               .font(.callout)
               .padding(.horizontal, 2)
             Image(systemName: "star.fill")

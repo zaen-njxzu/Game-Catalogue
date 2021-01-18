@@ -38,10 +38,6 @@ struct ContentView: View {
         Text(tabSelection.title),
         displayMode: .inline
       )
-      .background(NavigationConfigurator { navController in
-        navController.navigationBar.barTintColor = UIColor.Ext.DarkBlue
-        navController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-      })
       .navigationViewStyle(StackNavigationViewStyle())
     }
   }

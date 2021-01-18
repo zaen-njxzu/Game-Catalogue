@@ -40,10 +40,13 @@ extension GameRow {
     var infoGame: some View {
       VStack(alignment: .trailing, spacing: 8) {
         Text(game.name)
+          .foregroundColor(.black)
           .bold()
         Text(game.releasedAt)
+          .foregroundColor(.black)
         HStack(alignment: .center, spacing: 4) {
           Text(game.rating)
+            .foregroundColor(.black)
           Image(systemName: "star.fill")
             .resizable()
             .foregroundColor(Color(UIColor.Ext.DarkBlue))
