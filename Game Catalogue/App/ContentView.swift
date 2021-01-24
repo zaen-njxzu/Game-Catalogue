@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var homePresenter: HomePresenter
-  @EnvironmentObject var favouritePresenter: FavouritePresenter
-  @EnvironmentObject var searchPresenter: SearchPresenter
+  @ObservedObject var homePresenter = HomePresenter(homeUseCase: Injection.init().provideHome())
+  @ObservedObject var favouritePresenter = FavouritePresenter(favouriteUseCase: Injection.init().provideFavourite())
+  @ObservedObject var searchPresenter = SearchPresenter(searchUseCase: Injection.init().provideSearch())
   @State var tabSelection: Tabs = .tabHome
 
   var body: some View {

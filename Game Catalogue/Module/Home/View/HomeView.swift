@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
   @ObservedObject var presenter: HomePresenter
-
   var body: some View {
     ZStack {
       Color(UIColor.Ext.Blue)
@@ -21,11 +20,7 @@ struct HomeView: View {
             .foregroundColor(.white)
             .font(.largeTitle)
         } else {
-          ScrollView(.vertical, showsIndicators: false) {
-              VStack {
-                  gameList
-              }.padding(8)
-          }
+          gameScrollList
         }
       }
     }
@@ -44,16 +39,20 @@ extension HomeView {
       ActivityIndicator()
     }
   }
-  var gameList: some View {
-    ForEach(
-      self.presenter.games,
-      id: \.id
-    ) { game in
-      ZStack {
-        self.presenter.linkBuilder(for: game) {
-          GameRow(game: game)
-        }.buttonStyle(PlainButtonStyle())
-      }.padding(8)
+  var gameScrollList: some View {
+    ScrollView {
+      LazyVStack(spacing: 0) {
+        ForEach(
+          self.presenter.games,
+          id: \.id
+        ) { game in
+          ZStack {
+            self.presenter.linkBuilder(for: game) {
+              GameRow(game: game)
+            }.buttonStyle(PlainButtonStyle())
+          }.padding(8)
+        }
+      }
     }
   }
 }
