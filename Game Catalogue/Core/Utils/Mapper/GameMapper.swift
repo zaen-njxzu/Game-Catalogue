@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Catalogue
 
 final class GameMapper {
   static func mapGamesDomainToEntities(
@@ -88,5 +89,16 @@ final class GameMapper {
         favourite: result.favourite
       )
     }
+  }
+  static func mapCatalogueDomainToGameDomain(
+    input domain: CatalogueDomainModel
+  ) -> GameModel {
+    GameModel(
+      id: domain.id,
+      name: domain.name,
+      releasedAt: domain.releasedAt,
+      imageUrl: domain.imageUrl,
+      rating: domain.rating,
+      favourite: domain.favourite)
   }
 }

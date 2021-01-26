@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import Catalogue
+import CoreSDK
 
 struct ContentView: View {
-  @ObservedObject var homePresenter = HomePresenter(homeUseCase: Injection.init().provideHome())
+  @ObservedObject var homePresenter: GetListPresenter<Any, CatalogueDomainModel, Interactor<Any, [CatalogueDomainModel], GetCatalogueRepository<GetCatalogueLocalDataSource, GetCatalogueRemoteDataSource, CatalogueTransformer>>> = GetListPresenter(useCase: Injection.init().provideCatalogue())
   @ObservedObject var favouritePresenter = FavouritePresenter(favouriteUseCase: Injection.init().provideFavourite())
   @ObservedObject var searchPresenter = SearchPresenter(searchUseCase: Injection.init().provideSearch())
   @State var tabSelection: Tabs = .tabHome

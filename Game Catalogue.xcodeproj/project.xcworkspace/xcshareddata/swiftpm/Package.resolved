@@ -11,21 +11,30 @@
         }
       },
       {
+        "package": "CoreSDK",
+        "repositoryURL": "https://github.com/zaen-njxzu/Game-Catalogue-CoreSDK.git",
+        "state": {
+          "branch": null,
+          "revision": "14a1f00436af481e2ca04bdf8a3286f902762c48",
+          "version": "1.1.0"
+        }
+      },
+      {
         "package": "Realm",
         "repositoryURL": "https://github.com/realm/realm-cocoa",
         "state": {
           "branch": null,
-          "revision": "4274b9c8ba717d7a81c953c34b715d5f587fa92f",
-          "version": "10.5.1"
+          "revision": "11ac74e1cc1faec1cad0e6a9a41652ef1432d4c1",
+          "version": "5.5.0"
         }
       },
       {
-        "package": "RealmDatabase",
+        "package": "RealmCore",
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
           "branch": null,
-          "revision": "8af0f8d609491986b49f2c986e771d9dc445664d",
-          "version": "10.3.3"
+          "revision": "612057010f5521d41559970306054f4c5b12632a",
+          "version": "6.1.4"
         }
       },
       {
