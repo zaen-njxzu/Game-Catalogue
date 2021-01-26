@@ -39,7 +39,7 @@
 		009092D425B1CA0A00508A60 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 009092D325B1CA0A00508A60 /* .swiftlint.yml */; };
 		00AFAD1F25AD16D700C4330C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFAD1E25AD16D700C4330C /* DetailView.swift */; };
 		00AFAD2225AD16FF00C4330C /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AFAD2125AD16FF00C4330C /* DetailPresenter.swift */; };
-		00E27C1F25BF17180050277A /* Catalogue in Frameworks */ = {isa = PBXBuildFile; productRef = 00E27C1E25BF17180050277A /* Catalogue */; };
+		00B6756725BFB09E00A888B5 /* Catalogue in Frameworks */ = {isa = PBXBuildFile; productRef = 00B6756625BFB09E00A888B5 /* Catalogue */; };
 		00E3340C25BE686A000A36B4 /* Game_CatalogueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E3340B25BE686A000A36B4 /* Game_CatalogueTests.swift */; };
 		00E3341C25BE688A000A36B4 /* Game_CatalogueUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E3341B25BE688A000A36B4 /* Game_CatalogueUITests.swift */; };
 		00E62A8F25ABEF1E00A285B7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E62A8E25ABEF1E00A285B7 /* UIColor+Ext.swift */; };
@@ -110,7 +110,7 @@
 		009092D325B1CA0A00508A60 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		00AFAD1E25AD16D700C4330C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		00AFAD2125AD16FF00C4330C /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
-		00E27C1425BF101F0050277A /* Catalogue */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Catalogue; path = ../Catalogue; sourceTree = "<group>"; };
+		00B6756225BFB06500A888B5 /* Catalogue */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Catalogue; path = Modularization/Catalogue; sourceTree = "<group>"; };
 		00E3340925BE686A000A36B4 /* Game CatalogueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Game CatalogueTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E3340B25BE686A000A36B4 /* Game_CatalogueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_CatalogueTests.swift; sourceTree = "<group>"; };
 		00E3340D25BE686A000A36B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 			files = (
 				00457CCD25BFAADC00D5FE60 /* CoreSDK in Frameworks */,
 				003018EC25B2ABD2004F9925 /* RealmSwift in Frameworks */,
-				00E27C1F25BF17180050277A /* Catalogue in Frameworks */,
+				00B6756725BFB09E00A888B5 /* Catalogue in Frameworks */,
 				003018EA25B2ABD2004F9925 /* Realm in Frameworks */,
 				00099C9325AB58E700843AF4 /* SDWebImageSwiftUI in Frameworks */,
 				00099C8F25AB58B400843AF4 /* Alamofire in Frameworks */,
@@ -172,7 +172,7 @@
 		00099C5D25AB560200843AF4 = {
 			isa = PBXGroup;
 			children = (
-				00E27C1425BF101F0050277A /* Catalogue */,
+				00B6756225BFB06500A888B5 /* Catalogue */,
 				009092D325B1CA0A00508A60 /* .swiftlint.yml */,
 				00099C6825AB560200843AF4 /* Game Catalogue */,
 				00E3340A25BE686A000A36B4 /* Game CatalogueTests */,
@@ -572,8 +572,8 @@
 				00099C9225AB58E700843AF4 /* SDWebImageSwiftUI */,
 				003018E925B2ABD2004F9925 /* Realm */,
 				003018EB25B2ABD2004F9925 /* RealmSwift */,
-				00E27C1E25BF17180050277A /* Catalogue */,
 				00457CCC25BFAADC00D5FE60 /* CoreSDK */,
+				00B6756625BFB09E00A888B5 /* Catalogue */,
 			);
 			productName = "Game Catalogue";
 			productReference = 00099C6625AB560200843AF4 /* Game Catalogue.app */;
@@ -1148,7 +1148,7 @@
 			package = 00457CCB25BFAADC00D5FE60 /* XCRemoteSwiftPackageReference "Game-Catalogue-CoreSDK" */;
 			productName = CoreSDK;
 		};
-		00E27C1E25BF17180050277A /* Catalogue */ = {
+		00B6756625BFB09E00A888B5 /* Catalogue */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Catalogue;
 		};

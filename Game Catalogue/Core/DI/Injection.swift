@@ -12,7 +12,6 @@ import Catalogue
 import UIKit
 
 final class Injection: NSObject {
-  
   func provideCatalogue<U: UseCase>() -> U where U.Request == Any, U.Response == [CatalogueDomainModel] {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let local = GetCatalogueLocalDataSource(realm: appDelegate.realm)

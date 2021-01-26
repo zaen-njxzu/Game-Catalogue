@@ -11,7 +11,6 @@ import CoreSDK
 
 struct HomeView: View {
   @ObservedObject var presenter: GetListPresenter<Any, CatalogueDomainModel, Interactor<Any, [CatalogueDomainModel], GetCatalogueRepository<GetCatalogueLocalDataSource, GetCatalogueRemoteDataSource, CatalogueTransformer>>>
-  
   var body: some View {
     ZStack {
       Color(UIColor.Ext.Blue)
