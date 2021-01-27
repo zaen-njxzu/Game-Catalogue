@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       options connectionOptions: UIScene.ConnectionOptions
   ) {
 
-    let homePresenter = GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], GetCatalogueRepository<GetCatalogueLocalDataSource, GetCatalogueRemoteDataSource, CatalogueTransformer>>>(useCase: Injection.init().provideCatalogue())
-    let searchPresenter = GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], SearchCatalogueRepository<SearchCatalogueRemoteSource, CatalogueTransformer>>>(useCase: Injection.init().provideSearchCatalogue())
+    let homePresenter = CataloguePresenter(useCase: Injection.init().provideCatalogue())
+    let searchPresenter = SearchCataloguePresenter(useCase: Injection.init().provideSearchCatalogue())
     let favouritePresenter = FavouritePresenter(favouriteUseCase: Injection.init().provideFavourite())
     
     let contentView = ContentView(homePresenter: homePresenter, searchPresenter: searchPresenter, favouritePresenter: favouritePresenter)

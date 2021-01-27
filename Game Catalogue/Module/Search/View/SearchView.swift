@@ -10,8 +10,7 @@ import CoreSDK
 import Catalogue
 
 struct SearchView: View {
-//  @ObservedObject var presenter: SearchPresenter
-  @ObservedObject var presenter: GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], SearchCatalogueRepository<SearchCatalogueRemoteSource, CatalogueTransformer>>>
+  @ObservedObject var presenter: SearchCataloguePresenter
   @State private var query = ""
 
   var body: some View {
@@ -69,5 +68,14 @@ extension SearchView {
         }
       }
     }
+  }
+}
+
+extension GetListPresenter {
+  fileprivate func linkBuilder<Content: View>(
+    for game: GameModel,
+    @ViewBuilder content: () -> Content
+  ) -> some View {
+    NavigationLink(destination: SearchRouter().makeDetailView(for: game)) { content() }
   }
 }

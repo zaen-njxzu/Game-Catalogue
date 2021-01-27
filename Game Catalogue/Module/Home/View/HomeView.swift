@@ -10,7 +10,7 @@ import Catalogue
 import CoreSDK
 
 struct HomeView: View {
-  @ObservedObject var presenter: GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], GetCatalogueRepository<GetCatalogueLocalDataSource, GetCatalogueRemoteDataSource, CatalogueTransformer>>>
+  @ObservedObject var presenter: CataloguePresenter
   var body: some View {
     ZStack {
       Color(UIColor.Ext.Blue)
@@ -61,7 +61,7 @@ extension HomeView {
 
 extension GetListPresenter {
 
-  func linkBuilder<Content: View>(
+  fileprivate func linkBuilder<Content: View>(
     for game: GameModel,
     @ViewBuilder content: () -> Content
   ) -> some View {

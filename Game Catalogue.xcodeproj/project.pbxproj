@@ -108,6 +108,7 @@
 		0030190B25B2C205004F9925 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		0030190E25B2CF5B004F9925 /* CustomAlert+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomAlert+Ext.swift"; sourceTree = "<group>"; };
 		009092D325B1CA0A00508A60 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		0097700425C19D3400410D21 /* Detail */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Detail; path = Modularization/Detail; sourceTree = "<group>"; };
 		00AFAD1E25AD16D700C4330C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		00AFAD2125AD16FF00C4330C /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		00B6756225BFB06500A888B5 /* Catalogue */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Catalogue; path = Modularization/Catalogue; sourceTree = "<group>"; };
@@ -172,6 +173,7 @@
 		00099C5D25AB560200843AF4 = {
 			isa = PBXGroup;
 			children = (
+				0097700425C19D3400410D21 /* Detail */,
 				00B6756225BFB06500A888B5 /* Catalogue */,
 				009092D325B1CA0A00508A60 /* .swiftlint.yml */,
 				00099C6825AB560200843AF4 /* Game Catalogue */,
