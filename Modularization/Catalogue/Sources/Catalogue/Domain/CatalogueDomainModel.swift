@@ -14,7 +14,6 @@ public struct CatalogueDomainModel: Equatable, Identifiable {
   public let imageUrl: String
   public let rating: String
   public let favourite: Bool
-  
   public init(id: Int, name: String, releasedAt: String, imageUrl: String, rating: String, favourite: Bool) {
     self.id = id
     self.name = name

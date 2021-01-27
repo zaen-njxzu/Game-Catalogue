@@ -18,7 +18,7 @@ where
   Transformer.Response == [GameResponse],
   Transformer.Entity == [CatalogueModelEntity],
   Transformer.Domain == [CatalogueDomainModel] {
-  public typealias Request = Any
+  public typealias Request = String
   public typealias Response = [CatalogueDomainModel]
   private let _localDataSource: CatalogueLocalDataSource
   private let _remoteDataSource: RemoteDataSource
@@ -27,12 +27,11 @@ where
     localDataSource: CatalogueLocalDataSource,
     remoteDataSource: RemoteDataSource,
     mapper: Transformer) {
-    
     _localDataSource = localDataSource
     _remoteDataSource = remoteDataSource
     _mapper = mapper
   }
-  public func execute(request: Any?) -> AnyPublisher<[CatalogueDomainModel], Error> {
+  public func execute(request: String?) -> AnyPublisher<[CatalogueDomainModel], Error> {
     return _localDataSource.get()
       .flatMap { result -> AnyPublisher<[CatalogueDomainModel], Error> in
         if result.isEmpty {

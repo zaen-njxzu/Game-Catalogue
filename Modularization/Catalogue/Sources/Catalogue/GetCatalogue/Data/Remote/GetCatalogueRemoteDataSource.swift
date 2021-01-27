@@ -11,17 +11,13 @@ import Alamofire
 import Foundation
 
 public struct GetCatalogueRemoteDataSource : DataSource {
-  public typealias Request = Any
-  
+  public typealias Request = String
   public typealias Response = [GameResponse]
-  
   private let _endpoint: String
-  
   public init(endpoint: String) {
       _endpoint = endpoint
   }
-  
-  public func execute(request: Any?) -> AnyPublisher<[GameResponse], Error> {
+  public func execute(request: String?) -> AnyPublisher<[GameResponse], Error> {
       return Future<[GameResponse], Error> { completion in
         if let url = URL(string: _endpoint) {
           AF.request(url)

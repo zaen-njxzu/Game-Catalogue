@@ -14,6 +14,18 @@ public struct CatalogueTransformer: Mapper {
   public typealias Domain = [CatalogueDomainModel]
   public init() {}
 
+  public func transformResponseToDomain(response: [GameResponse]) -> [CatalogueDomainModel] {
+    return response.map { result in
+      CatalogueDomainModel(
+        id: result.id,
+        name: result.name,
+        releasedAt: result.released ?? "",
+        imageUrl: result.backgroundImage ?? "",
+        rating: result.rating,
+        favourite: false
+      )
+    }
+  }
   public func transformResponseToEntity(response: [GameResponse]) -> [CatalogueModelEntity] {
     return response.map { result in
       let newCatalogue = CatalogueModelEntity()

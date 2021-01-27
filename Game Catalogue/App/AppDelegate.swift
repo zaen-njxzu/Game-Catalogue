@@ -10,11 +10,11 @@ import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  var realm: Realm!
+  var realm: Realm?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-    realm = try! Realm(configuration: configuration)
+    realm = try? Realm(configuration: configuration)
 
     UINavigationBar.appearance().backgroundColor = UIColor.Ext.DarkBlue
     UINavigationBar.appearance().largeTitleTextAttributes = [

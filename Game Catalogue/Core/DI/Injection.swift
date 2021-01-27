@@ -12,16 +12,24 @@ import Catalogue
 import UIKit
 
 final class Injection: NSObject {
-  func provideCatalogue<U: UseCase>() -> U where U.Request == Any, U.Response == [CatalogueDomainModel] {
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let local = GetCatalogueLocalDataSource(realm: appDelegate.realm)
+  func provideSearchCatalogue<U: UseCase>() -> U? where U.Request == String, U.Response == [CatalogueDomainModel] {
+    let remote = SearchCatalogueRemoteSource(endpoint: Endpoints.Gets.searchGame.url)
+    let mapper = CatalogueTransformer()
+    let repository = SearchCatalogueRepository(
+      remoteDataSource: remote,
+      mapper: mapper)
+    return Interactor(repository: repository) as? U
+  }
+  func provideCatalogue<U: UseCase>() -> U? where U.Request == String, U.Response == [CatalogueDomainModel] {
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    let local = GetCatalogueLocalDataSource(realm: appDelegate?.realm)
     let remote = GetCatalogueRemoteDataSource(endpoint: Endpoints.Gets.gameList.url)
     let mapper = CatalogueTransformer()
     let repository = GetCatalogueRepository(
       localDataSource: local,
       remoteDataSource: remote,
       mapper: mapper)
-    return Interactor(repository: repository) as! U
+    return Interactor(repository: repository) as? U
   }
   private func provideRepository() -> GameRepositoryProtocol {
     let realm = try? Realm()

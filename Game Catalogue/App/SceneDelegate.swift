@@ -7,6 +7,8 @@
 
 import UIKit
 import SwiftUI
+import CoreSDK
+import Catalogue
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
@@ -16,7 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       options connectionOptions: UIScene.ConnectionOptions
   ) {
 
-    let contentView = ContentView()
+    let homePresenter = GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], GetCatalogueRepository<GetCatalogueLocalDataSource, GetCatalogueRemoteDataSource, CatalogueTransformer>>>(useCase: Injection.init().provideCatalogue())
+    let searchPresenter = GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], SearchCatalogueRepository<SearchCatalogueRemoteSource, CatalogueTransformer>>>(useCase: Injection.init().provideSearchCatalogue())
+    let favouritePresenter = FavouritePresenter(favouriteUseCase: Injection.init().provideFavourite())
+    
+    let contentView = ContentView(homePresenter: homePresenter, searchPresenter: searchPresenter, favouritePresenter: favouritePresenter)
 
     if let windowScene = scene as? UIWindowScene {
         let window = UIWindow(windowScene: windowScene)

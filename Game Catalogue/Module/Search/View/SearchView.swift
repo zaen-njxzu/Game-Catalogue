@@ -6,26 +6,32 @@
 //
 
 import SwiftUI
+import CoreSDK
+import Catalogue
 
 struct SearchView: View {
-  @ObservedObject var presenter: SearchPresenter
+//  @ObservedObject var presenter: SearchPresenter
+  @ObservedObject var presenter: GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], SearchCatalogueRepository<SearchCatalogueRemoteSource, CatalogueTransformer>>>
+  @State private var query = ""
 
   var body: some View {
     VStack {
       SearchBar(
-        text: $presenter.query,
-        onSearchButtonClicked: presenter.searchGames
+        text: $query,
+        onSearchButtonClicked: {
+          presenter.getList(request: query)
+        }
       )
       ZStack {
         Color(UIColor.Ext.Blue)
-        if presenter.loadingState {
+        if presenter.isLoading {
           loadingIndicator
         } else {
           if presenter.errorMessage != "" {
             Text(presenter.errorMessage)
               .foregroundColor(.white)
               .font(.largeTitle)
-          } else if presenter.games.isEmpty {
+          } else if presenter.list.isEmpty {
             Text("Empty Search")
               .foregroundColor(.white)
               .font(.largeTitle)
@@ -52,12 +58,12 @@ extension SearchView {
     ScrollView {
       LazyVStack(spacing: 0) {
         ForEach(
-          self.presenter.games,
+          self.presenter.list,
           id: \.id
         ) { game in
           ZStack {
-            self.presenter.linkBuilder(for: game) {
-              GameRow(game: game)
+            self.presenter.linkBuilder(for: GameMapper.mapCatalogueDomainToGameDomain(input: game)) {
+              GameRow(game: GameMapper.mapCatalogueDomainToGameDomain(input: game))
             }.buttonStyle(PlainButtonStyle())
           }.padding(8)
         }

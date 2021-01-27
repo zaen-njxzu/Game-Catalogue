@@ -10,9 +10,9 @@ import Catalogue
 import CoreSDK
 
 struct ContentView: View {
-  @ObservedObject var homePresenter: GetListPresenter<Any, CatalogueDomainModel, Interactor<Any, [CatalogueDomainModel], GetCatalogueRepository<GetCatalogueLocalDataSource, GetCatalogueRemoteDataSource, CatalogueTransformer>>> = GetListPresenter(useCase: Injection.init().provideCatalogue())
-  @ObservedObject var favouritePresenter = FavouritePresenter(favouriteUseCase: Injection.init().provideFavourite())
-  @ObservedObject var searchPresenter = SearchPresenter(searchUseCase: Injection.init().provideSearch())
+  let homePresenter: GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], GetCatalogueRepository<GetCatalogueLocalDataSource, GetCatalogueRemoteDataSource, CatalogueTransformer>>>
+  let searchPresenter: GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], SearchCatalogueRepository<SearchCatalogueRemoteSource, CatalogueTransformer>>>
+  let favouritePresenter: FavouritePresenter
   @State var tabSelection: Tabs = .tabHome
 
   var body: some View {
