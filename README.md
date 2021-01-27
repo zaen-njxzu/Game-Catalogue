@@ -1,2 +1,2 @@
 # Game-Catalogue Expert
-[![Build Status](https://travis-ci.com/zaen-njxzu/Game-Catalogue.svg?branch=master)](https://travis-ci.com/github/zaen-njxzu/Game-Catalogue)
+![iOS starter workflow](https://github.com/zaen-njxzu/Game-Catalogue/workflows/iOS%20starter%20workflow/badge.svg)
