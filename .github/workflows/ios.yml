@@ -1,4 +1,4 @@
-name: iOS Game Catalogue Work Flow
+name: iOS starter workflow
 
 on:
   push:
