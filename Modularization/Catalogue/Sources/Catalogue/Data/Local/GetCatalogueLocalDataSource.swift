@@ -48,5 +48,8 @@ public struct GetCatalogueLocalDataSource: LocalDataSource {
       }
     }.eraseToAnyPublisher()
   }
+  public func set(by id: String?) -> AnyPublisher<CatalogueModelEntity, Error> {
+    fatalError()
+  }
 
 }

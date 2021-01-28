@@ -7,10 +7,11 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Catalogue
 
 struct GameRow: View {
 
-  var game: GameModel
+  var game: CatalogueDomainModel
   var body: some View {
     HStack {
       imageGame

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CatalogueResponse.swift
 //  
 //
 //  Created by Zaenal Arsy on 25/01/21.

@@ -12,7 +12,7 @@ import CoreSDK
 struct ContentView: View {
   let homePresenter: GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], GetCatalogueRepository<GetCatalogueLocalDataSource, GetCatalogueRemoteDataSource, CatalogueTransformer>>>
   let searchPresenter: GetListPresenter<String, CatalogueDomainModel, Interactor<String, [CatalogueDomainModel], SearchCatalogueRepository<SearchCatalogueRemoteSource, CatalogueTransformer>>>
-  let favouritePresenter: FavouritePresenter
+  let favouritePresenter: FavouriteCataloguePresenterAlias
   @State var tabSelection: Tabs = .tabHome
 
   var body: some View {

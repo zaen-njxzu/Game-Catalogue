@@ -20,8 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     let homePresenter = CataloguePresenter(useCase: Injection.init().provideCatalogue())
     let searchPresenter = SearchCataloguePresenter(useCase: Injection.init().provideSearchCatalogue())
-    let favouritePresenter = FavouritePresenter(favouriteUseCase: Injection.init().provideFavourite())
-    
+    let favouritePresenter: FavouriteCataloguePresenterAlias = Injection.init().provideFavouritePresenter()
     let contentView = ContentView(homePresenter: homePresenter, searchPresenter: searchPresenter, favouritePresenter: favouritePresenter)
 
     if let windowScene = scene as? UIWindowScene {

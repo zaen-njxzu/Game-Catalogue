@@ -7,10 +7,11 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Catalogue
 
 struct DetailView: View {
   @Environment(\.presentationMode) var presentationMode
-  @ObservedObject var presenter: DetailPresenter
+  @ObservedObject var presenter: DetailCataloguePresenterAlias
   @State var showingAlert = false
   @State var alertMessage: AlertOneMessage = AlertOneMessage()
 
@@ -18,10 +19,10 @@ struct DetailView: View {
     ZStack {
       Color(UIColor.Ext.Blue)
       VStack {
-        if presenter.loadingState {
+        if presenter.isLoading {
           loadingIndicator
         } else {
-          if let detail = presenter.detailGame {
+          if let detail = presenter.detail {
             mainContent(detail: detail)
             Spacer()
           } else {
@@ -36,8 +37,8 @@ struct DetailView: View {
       Alert(title: Text(alertMessage.title), message: Text(alertMessage.message), dismissButton: .default(Text(alertMessage.buttonText)))
     }
     .onAppear {
-      if presenter.detailGame == nil {
-        presenter.getDetailGame()
+      if presenter.detail == nil {
+        presenter.getDetailCatalogue()
       }
     }
     .navigationBarTitle(
@@ -54,12 +55,17 @@ struct DetailView: View {
                           }),
                         trailing: Button(
                           action: {
-                            presenter.favouriteGame { result in
-                              self.alertMessage = result
+                            
+                            presenter.favouriteCatalogue { (isSuccess, catalogue) in
+                              if isSuccess {
+                                self.alertMessage = AlertOneMessage(title: "Success!", message: catalogue.favourite == true ? "\(catalogue.name) favourited!" : "\(catalogue.name) deleted from favourites!", buttonText: "OK")
+                              } else {
+                                self.alertMessage = AlertOneMessage(title: "Failed!", message: catalogue.favourite == true ? "\(catalogue.name) fail to favourited!" : "\(catalogue.name) fail to delete from favourites!", buttonText: "OK")
+                              }
                               self.showingAlert = true
                             }
                           }, label: {
-                            if presenter.game.favourite {
+                            if presenter.catalogue.favourite {
                               Image(systemName: "heart.fill")
                                 .foregroundColor(.white)
                                 .imageScale(.large)
@@ -84,7 +90,7 @@ extension DetailView {
         ActivityIndicator()
       }
     }
-    func mainContent(detail: DetailGameModel) -> some View {
+    func mainContent(detail: DetailCatalogueDomainModel) -> some View {
       VStack {
         ScrollView {
           ZStack(alignment: .bottomTrailing) {

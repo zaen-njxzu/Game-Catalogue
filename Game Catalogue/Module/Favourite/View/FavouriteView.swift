@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Catalogue
 
 struct FavouriteView: View {
-  @ObservedObject var presenter: FavouritePresenter
+  @ObservedObject var presenter: FavouriteCataloguePresenterAlias
   @State var dragOffset = CGSize.zero
   @State var currentId = 0
   @State var showingAlert = false
@@ -16,10 +17,10 @@ struct FavouriteView: View {
   var body: some View {
     ZStack {
       Color(UIColor.Ext.Blue)
-      if presenter.loadingState {
+      if presenter.isLoading {
         loadingIndicator
       } else {
-        if presenter.games.isEmpty {
+        if presenter.list.isEmpty {
           VStack {
             Text("Empty Data")
               .foregroundColor(.white)
@@ -33,7 +34,7 @@ struct FavouriteView: View {
     .onAppear {
       self.dragOffset = .zero
       self.currentId = 0
-      self.presenter.getGames()
+      self.presenter.getFavouriteCatalogue()
       self.alertMessage = AlertOneMessage()
       self.showingAlert = false
     }
@@ -58,7 +59,7 @@ extension FavouriteView {
     ScrollView {
       LazyVStack(spacing: 0) {
         ForEach(
-          self.presenter.games,
+          self.presenter.list,
           id: \.id
         ) { game in
           ZStack {
@@ -70,7 +71,7 @@ extension FavouriteView {
       }
     }
   }
-  func gameRowDragable(for game: GameModel) -> some View {
+  func gameRowDragable(for game: CatalogueDomainModel) -> some View {
     GameRow(game: game)
       .animation(.spring())
       .offset(offset(for: game.id))
@@ -85,13 +86,15 @@ extension FavouriteView {
             if abs(width) > 100 {
               let x = width > 0 ? 1000 : -1000
               self.dragOffset = .init(width: x, height: 0)
-              self.presenter.favouriteGame(game: game) { (isSuccess, alert) in
+              self.presenter.favouriteCatalogue(catalogue: game) { (isSuccess, catalogue) in
                 if isSuccess {
-                  self.presenter.games.removeAll { result in
+                  self.presenter.list.removeAll { result in
                     result.id == game.id
                   }
+                  self.alertMessage = AlertOneMessage(title: "Success!", message: catalogue.favourite == true ? "\(catalogue.name) favourited!" : "\(catalogue.name) deleted from favourites!", buttonText: "OK")
+                } else {
+                  self.alertMessage = AlertOneMessage(title: "Failed!", message: catalogue.favourite == true ? "\(catalogue.name) fail to favourited!" : "\(catalogue.name) fail to delete from favourites!", buttonText: "OK")
                 }
-                self.alertMessage = alert
                 self.showingAlert = true
               }
             } else {
@@ -104,4 +107,13 @@ extension FavouriteView {
       return id == currentId ? dragOffset : .zero
   }
 
+}
+
+extension FavouriteCataloguePresenter {
+  func linkBuilder<Content: View>(
+    for game: CatalogueDomainModel,
+    @ViewBuilder content: () -> Content
+  ) -> some View {
+    NavigationLink(destination: FavouriteRouter().makeDetailView(for: game)) { content() }
+  }
 }

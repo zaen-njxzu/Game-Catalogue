@@ -1,13 +1,14 @@
 //
-//  DetailGameResponse.swift
-//  Game Catalogue
+//  DetailCatalogueResponse.swift
+//  
 //
-//  Created by Zaenal Arsy on 11/01/21.
+//  Created by Zaenal Arsy on 28/01/21.
 //
 
 import Foundation
+import CoreSDK
 
-struct DetailGameResponse: Codable {
+public struct DetailCatalogueResponse: Codable {
   let id: Int
   let released, name, backgroundImage, descriptionRaw: String
   let rating: String
@@ -17,7 +18,7 @@ struct DetailGameResponse: Codable {
     case descriptionRaw = "description_raw"
     case backgroundImage = "background_image"
   }
-  init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     id = try container.decode(Int.self, forKey: .id)

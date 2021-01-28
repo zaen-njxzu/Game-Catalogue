@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
+import Catalogue
 
 class SearchRouter {
-  func makeDetailView(for game: GameModel) -> some View {
-    let detailUseCase = Injection.init().provideDetail()
-    let presenter = DetailPresenter(game: game, detailUseCase: detailUseCase)
-    return DetailView(presenter: presenter)
+  func makeDetailView(for game: CatalogueDomainModel) -> some View {
+    return DetailView(presenter: Injection.init().provideDetailPresenter(catalogue: game))
   }
 }

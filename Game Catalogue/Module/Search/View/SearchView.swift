@@ -61,8 +61,8 @@ extension SearchView {
           id: \.id
         ) { game in
           ZStack {
-            self.presenter.linkBuilder(for: GameMapper.mapCatalogueDomainToGameDomain(input: game)) {
-              GameRow(game: GameMapper.mapCatalogueDomainToGameDomain(input: game))
+            self.presenter.linkBuilder(for: game) {
+              GameRow(game: game)
             }.buttonStyle(PlainButtonStyle())
           }.padding(8)
         }
@@ -73,7 +73,7 @@ extension SearchView {
 
 extension GetListPresenter {
   fileprivate func linkBuilder<Content: View>(
-    for game: GameModel,
+    for game: CatalogueDomainModel,
     @ViewBuilder content: () -> Content
   ) -> some View {
     NavigationLink(destination: SearchRouter().makeDetailView(for: game)) { content() }
